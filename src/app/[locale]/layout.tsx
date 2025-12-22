@@ -10,13 +10,7 @@ export const metadata: Metadata = {
     description: "Real-time tracking, geofencing, and powerful analytics...",
 };
 
-export default async function LocaleLayout({
-                                               children,
-                                               params,
-                                           }: {
-    children: React.ReactNode;
-    params: Promise<{ locale: string }>;
-}) {
+export default async function LocaleLayout({ children, params, }: {children: React.ReactNode; params: Promise<{ locale: string }>;}) {
     const { locale } = await params;
 
     return (

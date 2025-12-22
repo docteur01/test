@@ -1,3 +1,6 @@
+// Fleet-related types for the fleet management application
+// src/types/fleet.types.ts
+
 import { UUID, DateString } from './base.types';
 
 export interface FleetManager {

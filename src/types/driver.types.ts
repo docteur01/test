@@ -1,3 +1,5 @@
+// Driver-related types for the fleet management application
+// src/types/driver.types.ts
 import { UUID } from './base.types';
 
 export interface DriverUserProfile {

@@ -1,3 +1,6 @@
+// Vehicle-related types for the fleet management application
+// src/types/vehicle.types.ts
+
 import { UUID, DateString, DateTimeString, VehicleType, EngineStatus, MaintenanceStatus, Coordinates } from './base.types';
 
 export interface AssignedDriver {

@@ -1,3 +1,6 @@
+// Trip-related types for the fleet management application
+// src/types/trip.types.ts
+
 import { UUID, DateString, TimeString, VehicleType, Coordinates, DateFilter } from './base.types';
 
 export interface RoutePoint extends Coordinates {

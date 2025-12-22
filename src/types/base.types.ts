@@ -1,3 +1,6 @@
+// Base types used across the fleet management application
+// src/types/base.types.ts
+
 export type UUID = string;
 export type DateString = string;
 export type TimeString = string;
