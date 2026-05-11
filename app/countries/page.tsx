@@ -2,11 +2,10 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowLeft, Globe, Search, MapPin, Phone, Coins } from 'lucide-react';
+
 import Link from 'next/link';
-import { 
-  ArrowLeft, Globe, Search, MapPin, Phone, Coins, 
-  ChevronRight, Building2, MapPinned, ChevronDown 
-} from 'lucide-react';
+
 import { getAllCountries } from '@/lib/ApiService';
 
 interface Country {
@@ -157,94 +156,45 @@ export default function CountriesPage() {
                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 flex-1"
               >
                 {paginatedCountries.map((country, index) => (
-                  <motion.button
-                    key={country.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.02 }}
-                    onClick={() => setSelectedCountry(selectedCountry?.id === country.id ? null : country)}
+                  <Link key={country.id} href={`/countries/${country.iso2}`}
                     className={`bg-white rounded-2xl shadow-sm border p-6 text-left transition-all hover:shadow-md hover:-translate-y-1 ${
                       selectedCountry?.id === country.id
                         ? 'border-blue-400 ring-2 ring-blue-200 shadow-lg'
                         : 'border-gray-100'
-                    }`}
+                    }`}                  
                   >
-                    {/* ... reste du contenu de la carte inchangé ... */}
-                    <div className="flex items-start justify-between mb-4">
-                      <span className="text-4xl">{country.emoji}</span>
-                      <ChevronRight
-                        size={20}
-                        className={`text-gray-400 transition-transform ${
-                          selectedCountry?.id === country.id ? 'rotate-90' : ''
-                        }`}
-                      />
-                    </div>
-                    <h3 className="font-bold text-lg text-gray-900 mb-2 truncate">
-                      {country.name}
-                    </h3>
-                    <div className="space-y-1">
-                      <p className="text-sm text-gray-600 flex items-center gap-2">
-                        <MapPin size={14} className="text-blue-500 flex-shrink-0" />
-                        <span className="truncate">{country.capital}</span>
-                      </p>
-                      <p className="text-sm text-gray-600 flex items-center gap-2">
-                        <Coins size={14} className="text-green-500 flex-shrink-0" />
-                        <span>{country.currency}</span>
-                      </p>
-                      <p className="text-sm text-gray-600 flex items-center gap-2">
-                        <Phone size={14} className="text-indigo-500 flex-shrink-0" />
-                        <span>+{country.phonecode}</span>
-                      </p>
-                    </div>
-                  </motion.button>
+                    <motion.button
+                      key={country.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.02 }}
+                      onClick={() => setSelectedCountry(selectedCountry?.id === country.id ? null : country)}
+
+                    >
+                      {/* ... reste du contenu de la carte inchangé ... */}
+                      <div className="flex items-start justify-between mb-4">
+                        <span className="text-4xl">{country.emoji}</span>
+                      </div>
+                      <h3 className="font-bold text-lg text-gray-900 mb-2 truncate">
+                        {country.name}
+                      </h3>
+                      <div className="space-y-1">
+                        <p className="text-sm text-gray-600 flex items-center gap-2">
+                          <MapPin size={14} className="text-blue-500 flex-shrink-0" />
+                          <span className="truncate">{country.capital}</span>
+                        </p>
+                        <p className="text-sm text-gray-600 flex items-center gap-2">
+                          <Coins size={14} className="text-green-500 flex-shrink-0" />
+                          <span>{country.currency}</span>
+                        </p>
+                        <p className="text-sm text-gray-600 flex items-center gap-2">
+                          <Phone size={14} className="text-indigo-500 flex-shrink-0" />
+                          <span>+{country.phonecode}</span>
+                        </p>
+                      </div>
+                    </motion.button>
+                  </Link>
                 ))}
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          {/* Panneau de détails */}
-          <AnimatePresence>
-            {selectedCountry && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 20 }}
-                className="mt-8 bg-white rounded-2xl shadow-xl border border-blue-100 p-6 md:p-8"
-              >
-                {/* ... ton contenu de détail reste identique ... */}
-                <div className="flex items-center gap-4 mb-6">
-                  <span className="text-5xl">{selectedCountry.emoji}</span>
-                  <div>
-                    <h2 className="text-3xl font-bold text-gray-900">{selectedCountry.name}</h2>
-                    <p className="text-gray-500 text-sm">{selectedCountry.native}</p>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                  {/* cartes infos */}
-                  <div className="bg-blue-50 rounded-xl p-4">
-                    <p className="text-sm text-gray-600 mb-1">Capitale</p>
-                    <p className="font-semibold text-gray-900">{selectedCountry.capital}</p>
-                  </div>
-                  {/* ... autres cartes ... */}
-                </div>
-
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Link
-                    href={`/countries/${selectedCountry.iso2}/states`}
-                    className="flex-1 inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold transition"
-                  >
-                    <MapPinned size={20} />
-                    Voir les États/Régions
-                  </Link>
-                  <Link
-                    href={`/countries/${selectedCountry.iso2}/cities`}
-                    className="flex-1 inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl font-semibold transition"
-                  >
-                    <Building2 size={20} />
-                    Voir les Villes
-                  </Link>
-                </div>
               </motion.div>
             )}
           </AnimatePresence>
