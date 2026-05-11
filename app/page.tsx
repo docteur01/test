@@ -1,123 +1,208 @@
-// app/page.tsx — Page d'accueil professionnelle du Générateur de Cas Médicaux
+// app/page.tsx
 'use client';
 
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight, Brain, FileText, Activity, Sparkles } from 'lucide-react';
-import { motion } from 'framer-motion';
+import {
+  ArrowRight,
+  Globe,
+  MapPinned,
+  Building2,
+  Sparkles, ChevronRight,
+  Database,
+} from 'lucide-react';
 
-import Header from "@/components/header"
-import Footer from "@/components/footer"
+import { motion } from 'framer-motion';
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen flex flex-col" style={{ background: 'var(--background)', color: 'var(--text)' }} >
-      <Header />
-      {/* Section Hero */}
-      <section className="flex flex-col items-center justify-center text-center py-24 px-6 md:px-10">
-        <motion.h1
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent leading-tight mb-4"
-        >
-          Générateur de Cas Médicaux
-        </motion.h1>
+    <main className="w-full min-h-screen bg-white overflow-hidden">
+      {/* HERO */}
+      <section className="relative w-full min-h-screen flex items-center px-6 md:px-12 lg:px-20 py-5">
+        {/* Background */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-[-200px] right-[-150px] w-[500px] h-[500px] bg-blue-200 rounded-full blur-3xl opacity-30" />
 
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          className="text-lg md:text-xl text-gray-600 max-w-2xl mb-8"
-        >
-          Créez des cas cliniques interactifs, précis et personnalisés pour la
-          formation médicale, l’évaluation des étudiants et la simulation
-          clinique.
-        </motion.p>
+          <div className="absolute bottom-[-200px] left-[-150px] w-[500px] h-[500px] bg-indigo-200 rounded-full blur-3xl opacity-30" />
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.5 }}
-          className="flex flex-col sm:flex-row items-center gap-4"
-        >
-          <Link href="/generator">
-            <button className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-full transition text-lg shadow-sm">
-              <Sparkles size={20} />
-              Lancer le générateur
-              <ArrowRight size={18} />
-            </button>
-          </Link>
-
-          <Link href="/about">
-            <button className="flex items-center gap-2 border border-blue-600 text-blue-600 hover:bg-blue-50 font-semibold px-6 py-3 rounded-full transition text-lg">
-              En savoir plus
-            </button>
-          </Link>
-        </motion.div>
-      </section>
-
-      {/* Section Fonctionnalités */}
-      <section className="py-16 px-6 md:px-10 bg-gradient-to-b from-white to-blue-50 border-t border-blue-100">
-        <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-2xl md:text-3xl font-bold mb-10">
-            Pourquoi utiliser le Générateur de Cas Médicaux ?
-          </h2>
-
-          <div className="grid gap-10 md:grid-cols-3 text-left">
+        <div className="relative z-10 w-full grid lg:grid-cols-2 gap-16 items-center">
+          {/* LEFT CONTENT */}
+          <div className="w-full">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: -15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition"
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-6"
             >
-              <div className="bg-blue-100 text-blue-700 w-12 h-12 flex items-center justify-center rounded-xl mb-4">
-                <Brain size={24} />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Cas intelligents</h3>
-              <p className="text-gray-600 text-sm">
-                Génération de cas cliniques cohérents grâce à l’intelligence
-                artificielle, adaptés au niveau d’étude ou à la spécialité.
-              </p>
+              <Sparkles size={16} />
+              Géographique Mondiale
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
+            <motion.h1
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+              className="text-5xl sm:text-6xl lg:text-7xl font-black leading-tight mb-8"
+            >
+              <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                Country State City
+              </span>
+
+              <br />
+
+              <span className="text-gray-900">
+                Gérez les données géographiques facilement
+              </span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition"
+              className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl mb-10"
             >
-              <div className="bg-green-100 text-green-700 w-12 h-12 flex items-center justify-center rounded-xl mb-4">
-                <FileText size={24} />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">
-                Support pédagogique
-              </h3>
-              <p className="text-gray-600 text-sm">
-                Permet aux enseignants de créer rapidement des supports
-                d’évaluation, des QCM ou des cas de simulation réalistes.
-              </p>
-            </motion.div>
+              Accédez à plus de <strong>247 pays</strong>,
+              <strong> 5000+ régions</strong> et
+              <strong> 151,000+ villes</strong> avec une interface moderne,
+              rapide et optimisée pour vous.
+            </motion.p>
 
+            {/* BUTTONS - Version mise à jour */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition"
+              className="flex flex-col sm:flex-row gap-4 mb-6"
             >
-              <div className="bg-indigo-100 text-indigo-700 w-12 h-12 flex items-center justify-center rounded-xl mb-4">
-                <Activity size={24} />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Formation continue</h3>
-              <p className="text-gray-600 text-sm">
-                Idéal pour la mise à jour des connaissances médicales et
-                l’autoformation basée sur des cas réalistes.
-              </p>
+              <Link href="/geo-test">
+                <button className="w-full sm:w-auto flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl font-semibold text-lg shadow-lg shadow-blue-200 transition">
+                  Commencer
+                  <ArrowRight size={20} />
+                </button>
+              </Link>
+
+              <Link href="/documentation">
+                <button className="w-full sm:w-auto border border-gray-300 hover:border-blue-300 hover:bg-blue-50 px-8 py-4 rounded-2xl font-semibold text-lg transition">
+                  Documentation
+                </button>
+              </Link>
             </motion.div>
+
+            {/* STATS */}
+            <div className="grid grid-cols-3 gap-6 mt-16">
+              {[
+                {
+                  value: '247+',
+                  label: 'Pays',
+                },
+                {
+                  value: '5000+',
+                  label: 'Régions',
+                },
+                {
+                  value: '151K+',
+                  label: 'Villes',
+                },
+              ].map((item, index) => (
+                <div key={index}>
+                  <h3 className="text-3xl md:text-4xl font-bold text-blue-600">
+                    {item.value}
+                  </h3>
+
+                  <p className="text-gray-600 mt-1">{item.label}</p>
+                </div>
+              ))}
+            </div>
           </div>
+
+          {/* RIGHT SIDE */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+            className="w-full"
+          >
+            <div className="bg-white border border-gray-200 rounded-[32px] shadow-2xl p-8 lg:p-10">
+              
+            <div className="space-y-6">
+              {/* CARD */}
+              <div className="bg-blue-50 rounded-2xl p-6 border border-blue-100">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="bg-blue-600 text-white w-12 h-12 rounded-xl flex items-center justify-center">
+                    <Globe size={24} />
+                  </div>
+
+                  <div>
+                    <h3 className="font-bold text-lg">
+                      Une expérience mondiale
+                    </h3>
+
+                    <p className="text-gray-600 text-sm">
+                      Permettez à vos utilisateurs de sélectionner facilement leur pays,
+                      région ou ville partout dans le monde.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="h-3 bg-blue-200 rounded-full overflow-hidden">
+                  <div className="w-[90%] h-full bg-blue-600 rounded-full" />
+                </div>
+              </div>
+
+              {/* CARD */}
+              <div className="bg-indigo-50 rounded-2xl p-6 border border-indigo-100">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="bg-indigo-600 text-white w-12 h-12 rounded-xl flex items-center justify-center">
+                    <MapPinned size={24} />
+                  </div>
+
+                  <div>
+                    <h3 className="font-bold text-lg">
+                      Des formulaires plus intelligents
+                    </h3>
+
+                    <p className="text-gray-600 text-sm">
+                      Réduisez les erreurs de saisie et améliorez l’expérience utilisateur
+                      avec des localisations précises et organisées.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="h-3 bg-indigo-200 rounded-full overflow-hidden">
+                  <div className="w-[95%] h-full bg-indigo-600 rounded-full" />
+                </div>
+              </div>
+
+              {/* CARD */}
+              <div className="bg-green-50 rounded-2xl p-6 border border-green-100">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="bg-green-600 text-white w-12 h-12 rounded-xl flex items-center justify-center">
+                    <Database size={24} />
+                  </div>
+
+                  <div>
+                    <h3 className="font-bold text-lg">
+                      Un gain de temps énorme
+                    </h3>
+
+                    <p className="text-gray-600 text-sm">
+                      Évitez de créer et maintenir vous-même des listes de pays, régions et
+                      villes déjà prêtes à être utilisées.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="h-3 bg-green-200 rounded-full overflow-hidden">
+                  <div className="w-[98%] h-full bg-green-600 rounded-full" />
+                </div>
+              </div>
+            </div>
+
+            </div>
+          </motion.div>
         </div>
       </section>
-        <Footer />
-    </div>
+    </main>
   );
 }
